@@ -1,36 +1,47 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
- 
+	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd
+	
+	
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
 	<http auto-config="true">
 		<intercept-url pattern="/welcome2*" access="ROLE_USER" />
 		<form-login login-page="/login" default-target-url="/welcome2"
 			authentication-failure-url="/loginfailed" />
 		<logout logout-success-url="/logout" />
 	</http>
- 
-	<!-- authentication-manager>
-	  <authentication-provider>
-		<user-service>
-			<user name="mkyong" password="123456" authorities="ROLE_USER" />
-		</user-service>
-	  </authentication-provider>
-	</authentication-manager-->
-	
 
-	<beans:bean id="stupidAuthenticationProvider" 
-	class="mx.eduardo.g.ch.common.auth.CustomAuthunticationManager"></beans:bean>
-	
-	<authentication-manager>
-		<authentication-provider ref="stupidAuthenticationProvider" />
+	<!-- authentication-manager> <authentication-provider> <user-service> <user 
+		name=" m kyong " password="123456" authorities="ROLE_USER" /> </user-service> 
+		</authentication-provider> </authentication-manager -->
 
-	</authentication-manager>
-	
-	
+
+
+
+	<beans:bean id="org.springframework.security.authenticationManager"
+		class="org.springframework.security.authentication.ProviderManager">
+		<beans:property name="providers">
+			<util:list>
+				<beans:ref local="MiAuthenticationProvider" />
+			</util:list>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="MiAuthenticationProvider"
+		class="mx.eduardo.g.ch.common.auth.CustomAuthunticationManager">
+
+	</beans:bean>
+
+
+
 </beans:beans>
 
 
