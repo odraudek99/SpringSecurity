@@ -18,15 +18,10 @@
 	</http>
 
 	<!-- authentication-manager> <authentication-provider> <user-service> <user 
-		name=" m kyong " password="123456" authorities="ROLE_USER" /> </user-service> 
+		name="eduardo" password="123456" authorities="ROLE_USER" /> </user-service> 
 		</authentication-provider> </authentication-manager -->
 
 
-	<authentication-provider id="autenticacionDefault">
-		<user-service>
-			<user name="eduardo" password="123456" authorities="ROLE_USER" />
-		</user-service>
-	</authentication-provider>
 
 
 	<beans:bean id="org.springframework.security.authenticationManager"
