@@ -49,7 +49,7 @@ public class CustomAuthunticationManager extends AbstractUserDetailsAuthenticati
 				
 		if ("eduardo".equals(arg1.getName()) && "password".equals(arg1.getCredentials())) {
 			// Define el usuario
-			user = new MyUserDetails("user", "password", true, true, 
+			user = new MyUserDetails(arg1.getName(), arg1.getCredentials().toString(), true, true, 
 					true,true, grantedAuth );
 			
 			
